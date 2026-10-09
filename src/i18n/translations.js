@@ -10,7 +10,7 @@ export const translations = {
     placementAriaLabel: 'Set date and time for planet positions',
     dateTimeTitle: 'Date & time',
     dateTimeExpect:
-      'Add your date and time and see what was the position of the planets on that date and time.',
+      'Pick any moment in time — we’ll freeze the orbits and explain where each world is on the diagram, in plain English.',
     dateLabel: 'Date',
     timeLabel: 'Time',
     showPositions: 'Show positions',
@@ -26,8 +26,46 @@ export const translations = {
     timelineOpenLabel: 'Timeline',
     timelineHide: 'Hide',
 
-    planetPositionsTitle: 'Planet positions',
-    placementDetailsSubtitle: 'Angles from top (0°) clockwise. Same date/time as diagram.',
+    planetPositionsTitle: 'Where were they?',
+    placementDetailsSubtitle:
+      'This is a simplified cartoon orbit (not a star chart). Each row tells you how far a planet has gone around its loop and how it compares to Earth.',
+    placementSnapshotTitle: 'Quick read for this moment',
+    placementTechLabel: 'Diagram numbers',
+    placementPercentAround: '{percent}% around this lap',
+    clockOnDiagram: 'On the picture, about {hour} o’clock (Sun in the middle)',
+    lapLengthEarth: 'One lap = 1 year — your home track',
+    lapLengthDays: 'One full lap takes about {days} Earth days',
+    lapLengthYears: 'One full lap takes about {years} Earth years',
+
+    orbitProgressStart: 'Just starting a fresh lap around the Sun',
+    orbitProgressEarly: 'Still early on this trip around the Sun',
+    orbitProgressQuarter: 'About a quarter of the way around',
+    orbitProgressHalf: 'Roughly halfway around its orbit',
+    orbitProgressPastHalf: 'Past halfway — on the long stretch home',
+    orbitProgressLate: 'Almost back to where this lap began',
+
+    relativeEarthYou: 'This is us — the blue dot’s track',
+    relativeEarthAligned: 'Nearly lined up with Earth on the diagram',
+    relativeEarthLittleAhead: 'A little ahead of Earth on the track',
+    relativeEarthLittleBehind: 'A little behind Earth on the track',
+    relativeEarthAhead: 'Ahead of Earth on the clockwise track',
+    relativeEarthBehind: 'Behind Earth on the clockwise track',
+    relativeEarthFarAhead: 'Much farther along the track than Earth',
+    relativeEarthFarBehind: 'Still catching up to Earth on the track',
+    relativeEarthOpposite: 'On the other side of the Sun from Earth, in this model',
+
+    speedBlurbMercury: 'The sprinter — shortest lap in the solar system.',
+    speedBlurbVenus: 'Bright and unhurried compared to Mercury.',
+    speedBlurbEarth: 'Our baseline — everything else is measured against this track.',
+    speedBlurbMars: 'The red loop — about 2 Earth years per lap.',
+    speedBlurbJupiter: 'The giant takes its time — many Earth years per lap.',
+    speedBlurbSaturn: 'Slow and stately, with the rings along for the ride.',
+    speedBlurbUranus: 'Ice giant on a very long, cold commute.',
+    speedBlurbNeptune: 'The outermost lap — patience required.',
+
+    snapshotBuddyClose: '{planet} is almost shoulder-to-shoulder with Earth on the diagram.',
+    snapshotBuddyNear: '{planet} is relatively close to Earth on the track right now.',
+    snapshotSpread: 'The planets are spread around the Sun — like runners on different lanes.',
     closePanel: 'Close panel',
     orbitalPeriodDays: 'Orbital period in days',
 
@@ -88,8 +126,12 @@ export const translations = {
     remedy: 'Remedy',
 
     orbitSpeed: 'Orbit speed',
+    footerAriaLabel: 'Site credits and copyright',
     footerText:
       'This is a fun app, made for curious brains who believe in science and unicorns.',
+    footerCopyright: '© {year} {author}. All rights reserved.',
+    footerAuthor: 'Author: {author}',
+    footerMadeWithAi: 'Made using AI — assisted writing, layout, and code.',
 
     // Position on orbit (placement panel)
     posTop: 'Top (0°)',
@@ -144,7 +186,7 @@ export const translations = {
     placementAriaLabel: 'ग्रहों की स्थिति के लिए दिनांक और समय सेट करें',
     dateTimeTitle: 'दिनांक और समय',
     dateTimeExpect:
-      'अपनी तारीख और समय दर्ज करें और देखें कि उस समय ग्रह कहाँ थे।',
+      'कोई भी पल चुनें — हम कक्षाएँ रोककर सरल भाषा में बताएँगे कि चित्र पर हर ग्रह कहाँ है।',
     dateLabel: 'तारीख',
     timeLabel: 'समय',
     showPositions: 'स्थिति दिखाएँ',
@@ -160,9 +202,46 @@ export const translations = {
     timelineOpenLabel: 'समय रेखा',
     timelineHide: 'छिपाएँ',
 
-    planetPositionsTitle: 'ग्रहों की स्थिति',
+    planetPositionsTitle: 'वे कहाँ थे?',
     placementDetailsSubtitle:
-      'शीर्ष (0°) से घड़ी की दिशा में कोण। वही दिनांक/समय जो चित्र में है।',
+      'यह सरल चित्रण है (वास्तविक तारा मानचित्र नहीं)। हर पंक्ति बताती है कि ग्रह अपनी कक्षा पर कितना आगे है और पृथ्वी से कैसे जुड़ा है।',
+    placementSnapshotTitle: 'इस पल की झलक',
+    placementTechLabel: 'चित्र के आँकड़े',
+    placementPercentAround: 'इस चक्कर का लगभग {percent}%',
+    clockOnDiagram: 'चित्र पर लगभग {hour} बजे (बीच में सूर्य)',
+    lapLengthEarth: 'एक चक्कर = 1 वर्ष — हमारा घर',
+    lapLengthDays: 'एक पूरा चक्कर लगभग {days} पृथ्वी दिन',
+    lapLengthYears: 'एक पूरा चक्कर लगभग {years} पृथ्वी वर्ष',
+
+    orbitProgressStart: 'सूर्य के चारों ओर नया चक्कर शुरू',
+    orbitProgressEarly: 'अभी यात्रा की शुरुआत',
+    orbitProgressQuarter: 'लगभग एक चौथाई रास्ता',
+    orbitProgressHalf: 'लगभग आधा चक्कर',
+    orbitProgressPastHalf: 'आधे से आगे — घर की ओर',
+    orbitProgressLate: 'लगभग वही बिंदु जहाँ चक्कर शुरू हुआ',
+
+    relativeEarthYou: 'यह हम हैं — नीले ग्रह की कक्षा',
+    relativeEarthAligned: 'चित्र पर लगभग पृथ्वी के साथ',
+    relativeEarthLittleAhead: 'पृथ्वी से थोड़ा आगे',
+    relativeEarthLittleBehind: 'पृथ्वी से थोड़ा पीछे',
+    relativeEarthAhead: 'घड़ी की दिशा में पृथ्वी से आगे',
+    relativeEarthBehind: 'पृथ्वी से पीछे की ओर',
+    relativeEarthFarAhead: 'पृथ्वी से काफी आगे',
+    relativeEarthFarBehind: 'पृथ्वी से अभी दूर पीछे',
+    relativeEarthOpposite: 'इस मॉडल में पृथ्वी के विपरीम ओर',
+
+    speedBlurbMercury: 'सबसे तेज़ — सबसे छोटा चक्कर।',
+    speedBlurbVenus: 'बुध से धीरे, फिर भी चमकदार।',
+    speedBlurbEarth: 'हमारा मानक — बाकी सब इससे तुलना होते हैं।',
+    speedBlurbMars: 'लाल कक्षा — लगभग 2 पृथ्वी वर्ष प्रति चक्कर।',
+    speedBlurbJupiter: 'विशाल ग्रह — बहुत लंबा चक्कर।',
+    speedBlurbSaturn: 'धीरे, विनम्र — छल्लों सहित।',
+    speedBlurbUranus: 'बर्फ़ीला दिग्गज — बहुत लंबी यात्रा।',
+    speedBlurbNeptune: 'सबसे बाहरी कक्षा — धैर्य चाहिए।',
+
+    snapshotBuddyClose: 'चित्र पर {planet} लगभग पृथ्वी के बगल में है।',
+    snapshotBuddyNear: 'अभी {planet} पृथ्वी के काफ़ी पास है।',
+    snapshotSpread: 'ग्रह सूर्य के चारों ओर बिखरे हैं — अलग-अलग लेन जैसे।',
     closePanel: 'पैनल बंद करें',
     orbitalPeriodDays: 'कक्षीय अवधि (दिनों में)',
 
@@ -220,8 +299,12 @@ export const translations = {
     remedy: 'उपाय',
 
     orbitSpeed: 'कक्षा की गति',
+    footerAriaLabel: 'कॉपीराइट और श्रेय',
     footerText:
       'यह एक मज़ेदार ऐप है, उन जिज्ञासु दिमागों के लिए जो विज्ञान और यूनिकॉर्न में विश्वास करते हैं।',
+    footerCopyright: '© {year} {author}. सर्वाधिकार सुरक्षित।',
+    footerAuthor: 'लेखक: {author}',
+    footerMadeWithAi: 'AI की सहायता से बनाया गया — लेखन, लेआउट और कोड में।',
 
     posTop: 'शीर्ष (0°)',
     posTopRight: 'ऊपर-दाएँ (45°)',

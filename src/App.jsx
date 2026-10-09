@@ -2,6 +2,16 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { PLANETS, SUN } from './planets'
 import { ENGLISH_ASTROLOGY, HINDU_ASTROLOGY } from './astrologyData'
 import { getPlanetAngleAtDate, ORBIT_PERIOD_DAYS } from './planetPositions'
+import {
+  angleToClockHour,
+  findBuddyPlanet,
+  humanLapLabel,
+  orbitProgressKey,
+  orbitProgressPercent,
+  planetSpeedBlurbKey,
+  relativeEarthKey,
+  snapshotInsightKey,
+} from './positionInsights.js'
 import { useLanguage } from './i18n/LanguageContext.jsx'
 import {
   getPositionLabelI18n,
@@ -10,6 +20,7 @@ import {
 } from './i18n/translations.js'
 import { getLocalizedPlanetBody } from './i18n/planetsHiContent.js'
 import { EventsDrawer } from './EventsDrawer.jsx'
+import { SITE_AUTHOR } from './siteMeta.js'
 import './App.css'
 
 /** Chevron toggles: up when closed (slide up to open), down when open (slide down to hide). */
@@ -270,6 +281,23 @@ function App() {
     if (locale !== 'hi') return selectedPlanet
     return getLocalizedPlanetBody(selectedPlanet.name, selectedPlanet.name === 'Sun', selectedPlanet)
   }, [selectedPlanet, locale])
+
+  const placementAngles = useMemo(() => {
+    if (!placementDateTime) return null
+    const angles = {}
+    PLANETS.forEach((p) => {
+      angles[p.name] = getPlanetAngleAtDate(p.name, placementDateTime)
+    })
+    return angles
+  }, [placementDateTime])
+
+  const placementSnapshotText = useMemo(() => {
+    if (!placementAngles) return null
+    const buddy = findBuddyPlanet(placementAngles)
+    const key = snapshotInsightKey(buddy)
+    if (key === 'snapshotSpread') return t(key)
+    return tReplace(t, key, { planet: planetDisplayName(buddy.name, t) })
+  }, [placementAngles, t, locale])
 
   const handlePlanetEnter = (planet, e) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -567,20 +595,46 @@ function App() {
           <p className="placement-details-subtitle">
             {t('placementDetailsSubtitle')}
           </p>
+          {placementSnapshotText && (
+            <div className="placement-snapshot">
+              <p className="placement-snapshot-label">{t('placementSnapshotTitle')}</p>
+              <p className="placement-snapshot-text">{placementSnapshotText}</p>
+            </div>
+          )}
           <ul className="placement-details-list">
             {PLANETS.map((planet) => {
-              const angle = getPlanetAngleAtDate(planet.name, placementDateTime)
+              const angle = placementAngles[planet.name]
+              const earthAngle = placementAngles.Earth
               const periodDays = ORBIT_PERIOD_DAYS[planet.name]
+              const progressKey = orbitProgressKey(angle)
+              const rel = relativeEarthKey(planet.name, angle, earthAngle)
+              const speedKey = planetSpeedBlurbKey(planet.name)
+              const clockHour = angleToClockHour(angle)
+              const percent = orbitProgressPercent(angle)
               return (
                 <li key={planet.name} className="placement-details-row">
-                  <span className="placement-details-name">{planetDisplayName(planet.name, t)}</span>
-                  <span className="placement-details-angle">{angle.toFixed(1)}°</span>
-                  <span className="placement-details-position">{getPositionLabelI18n(angle, t)}</span>
-                  {periodDays != null && (
-                    <span className="placement-details-period" title={t('orbitalPeriodDays')}>
-                      {periodDays} d
+                  <div className="placement-details-head">
+                    <span className="placement-details-name">{planetDisplayName(planet.name, t)}</span>
+                    <span className="placement-details-percent">
+                      {tReplace(t, 'placementPercentAround', { percent })}
                     </span>
-                  )}
+                  </div>
+                  <p className="placement-details-fun">{t(progressKey)}</p>
+                  <p className="placement-details-fun placement-details-fun--muted">
+                    {tReplace(t, 'clockOnDiagram', { hour: clockHour })}
+                  </p>
+                  <p className="placement-details-fun">{t(rel.key)}</p>
+                  {speedKey && <p className="placement-details-quip">{t(speedKey)}</p>}
+                  <p className="placement-details-lap">{humanLapLabel(planet.name, t)}</p>
+                  <div className="placement-details-tech" aria-label={t('placementTechLabel')}>
+                    <span className="placement-details-angle">{angle.toFixed(1)}°</span>
+                    <span className="placement-details-position">{getPositionLabelI18n(angle, t)}</span>
+                    {periodDays != null && (
+                      <span className="placement-details-period" title={t('orbitalPeriodDays')}>
+                        {periodDays} d
+                      </span>
+                    )}
+                  </div>
                 </li>
               )
             })}
@@ -781,9 +835,17 @@ function App() {
           </button>
         </div>
         <div className="orbit-controls-main">
-          <p className="app-footer">
-            {t('footerText')}
-          </p>
+          <footer className="app-footer" aria-label={t('footerAriaLabel')}>
+            <p className="app-footer-tagline">{t('footerText')}</p>
+            <p className="app-footer-note">
+              {tReplace(t, 'footerCopyright', {
+                year: new Date().getFullYear(),
+                author: SITE_AUTHOR,
+              })}
+            </p>
+            <p className="app-footer-note">{tReplace(t, 'footerAuthor', { author: SITE_AUTHOR })}</p>
+            <p className="app-footer-note app-footer-note--ai">{t('footerMadeWithAi')}</p>
+          </footer>
           <div className="orbit-controls-slider">
             <label htmlFor="speed" className="speed-label">
               {t('orbitSpeed')}
