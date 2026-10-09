@@ -20,7 +20,18 @@ import {
 } from './i18n/translations.js'
 import { getLocalizedPlanetBody } from './i18n/planetsHiContent.js'
 import { EventsDrawer } from './EventsDrawer.jsx'
-import { SITE_AUTHOR } from './siteMeta.js'
+import { SITE_AUTHOR, SITE_AUTHOR_URL } from './siteMeta.js'
+import {
+  ASTRO_BODIES,
+  getPlacementsForDate,
+  SIGN_KEYS,
+  RASHI_KEYS,
+} from './zodiacPlacements.js'
+import {
+  getAstroMoodHeadline,
+  getWesternReading,
+  getVedicReading,
+} from './astrologyPlacementReadings.js'
 import './App.css'
 
 /** Chevron toggles: up when closed (slide up to open), down when open (slide down to hide). */
@@ -298,6 +309,16 @@ function App() {
     if (key === 'snapshotSpread') return t(key)
     return tReplace(t, key, { planet: planetDisplayName(buddy.name, t) })
   }, [placementAngles, t, locale])
+
+  const zodiacPlacements = useMemo(() => {
+    if (!placementDateTime) return null
+    return getPlacementsForDate(placementDateTime)
+  }, [placementDateTime])
+
+  const astroMoodHeadline = useMemo(() => {
+    if (!zodiacPlacements) return null
+    return getAstroMoodHeadline(zodiacPlacements, t, (key, vars) => tReplace(t, key, vars))
+  }, [zodiacPlacements, t, locale])
 
   const handlePlanetEnter = (planet, e) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -592,6 +613,7 @@ function App() {
               <PanelCloseIcon />
             </button>
           </div>
+          <div className="placement-details-scroll">
           <p className="placement-details-subtitle">
             {t('placementDetailsSubtitle')}
           </p>
@@ -601,6 +623,59 @@ function App() {
               <p className="placement-snapshot-text">{placementSnapshotText}</p>
             </div>
           )}
+          {zodiacPlacements && (
+            <section className="placement-astro" aria-labelledby="placement-astro-heading">
+              <h3 id="placement-astro-heading" className="placement-astro-title">
+                {t('placementAstroTitle')}
+              </h3>
+              <p className="placement-astro-disclaimer">{t('placementAstroDisclaimer')}</p>
+              {astroMoodHeadline && (
+                <div className="placement-astro-mood">
+                  <p className="placement-snapshot-label">{t('placementAstroMoodLabel')}</p>
+                  <p className="placement-astro-mood-text">{astroMoodHeadline}</p>
+                </div>
+              )}
+              <ul className="placement-astro-list">
+                {ASTRO_BODIES.map((body) => {
+                  const p = zodiacPlacements[body]
+                  const label = planetDisplayName(body, t)
+                  const western = getWesternReading(
+                    body,
+                    p.tropicalSign,
+                    t,
+                    (key, vars) => tReplace(t, key, vars),
+                    label,
+                  )
+                  const vedic = getVedicReading(
+                    body,
+                    p.siderealSign,
+                    t,
+                    (key, vars) => tReplace(t, key, vars),
+                    label,
+                  )
+                  return (
+                    <li key={body} className="placement-astro-row">
+                      <div className="placement-astro-row-head">
+                        <span className="placement-details-name">{label}</span>
+                        <span className="placement-astro-badges">
+                          <span className="placement-astro-badge" title={t('placementAstroWesternLabel')}>
+                            {t(SIGN_KEYS[p.tropicalSign])}
+                          </span>
+                          <span className="placement-astro-badge placement-astro-badge--vedic" title={t('placementAstroVedicLabel')}>
+                            {t(RASHI_KEYS[p.siderealSign])}
+                          </span>
+                        </span>
+                      </div>
+                      <p className="placement-astro-line">{western}</p>
+                      <p className="placement-astro-line placement-astro-line--vedic">{vedic}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+              <p className="placement-astro-hint">{t('placementAstroTapHint')}</p>
+            </section>
+          )}
+          <h3 className="placement-orbit-section-title">{t('placementOrbitSection')}</h3>
           <ul className="placement-details-list">
             {PLANETS.map((planet) => {
               const angle = placementAngles[planet.name]
@@ -639,6 +714,7 @@ function App() {
               )
             })}
           </ul>
+          </div>
         </aside>
       )}
 
@@ -838,12 +914,30 @@ function App() {
           <footer className="app-footer" aria-label={t('footerAriaLabel')}>
             <p className="app-footer-tagline">{t('footerText')}</p>
             <p className="app-footer-note">
-              {tReplace(t, 'footerCopyright', {
-                year: new Date().getFullYear(),
-                author: SITE_AUTHOR,
-              })}
+              © {new Date().getFullYear()}{' '}
+              <a
+                href={SITE_AUTHOR_URL}
+                className="app-footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t('footerAuthorLinkAria')}
+              >
+                {SITE_AUTHOR}
+              </a>
+              . {t('footerCopyrightRights')}
             </p>
-            <p className="app-footer-note">{tReplace(t, 'footerAuthor', { author: SITE_AUTHOR })}</p>
+            <p className="app-footer-note">
+              {t('footerAuthorLabel')}{' '}
+              <a
+                href={SITE_AUTHOR_URL}
+                className="app-footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t('footerAuthorLinkAria')}
+              >
+                {SITE_AUTHOR}
+              </a>
+            </p>
             <p className="app-footer-note app-footer-note--ai">{t('footerMadeWithAi')}</p>
           </footer>
           <div className="orbit-controls-slider">

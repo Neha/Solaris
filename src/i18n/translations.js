@@ -66,6 +66,76 @@ export const translations = {
     snapshotBuddyClose: '{planet} is almost shoulder-to-shoulder with Earth on the diagram.',
     snapshotBuddyNear: '{planet} is relatively close to Earth on the track right now.',
     snapshotSpread: 'The planets are spread around the Sun — like runners on different lanes.',
+
+    placementAstroTitle: 'Astrology-style read',
+    placementAstroDisclaimer:
+      'Approximate tropical & Vedic signs from simplified sky math — for curiosity and play. Not a birth chart, not medical or financial advice. For your personal chart, use a qualified astrologer or precise ephemeris.',
+    placementAstroMoodLabel: 'Broad sky mood',
+    placementAstroWesternLabel: 'Western (tropical)',
+    placementAstroVedicLabel: 'Vedic (sidereal, ~Lahiri)',
+    placementAstroTapHint: 'Tap a planet on the diagram for full English & Hindu symbolism.',
+    placementOrbitSection: 'Orbit diagram (science view)',
+
+    astroMoodSunMoon:
+      'Sun in {sunSign}, Moon in {moonSign} — outward tone vs emotional undercurrent for this date (general, not personal).',
+    astroMoodSameSign:
+      'Sun and Moon both in {sign} — a concentrated, same-note mood in this rough model (general, not personal).',
+    astroWesternLine:
+      '{planet} in {sign}: {focus}, filtered through {theme} themes. A collective flavor, not your private forecast.',
+    astroVedicLine:
+      '{planet} in {rashi}: {focus} — read in Jyotish style as general graha energy, not a personalized prediction.',
+
+    astroFocusSun: 'vitality, identity, and visibility',
+    astroFocusMoon: 'feelings, habits, and what feels safe',
+    astroFocusMercury: 'talk, learning, and everyday decisions',
+    astroFocusVenus: 'love, beauty, and what we value',
+    astroFocusMars: 'drive, courage, and how we assert',
+    astroFocusJupiter: 'growth, luck, and big-picture faith',
+    astroFocusSaturn: 'discipline, limits, and long lessons',
+    astroFocusUranus: 'surprise, freedom, and rule-breaking',
+    astroFocusNeptune: 'dreams, intuition, and blur',
+
+    signAries: 'Aries',
+    signTaurus: 'Taurus',
+    signGemini: 'Gemini',
+    signCancer: 'Cancer',
+    signLeo: 'Leo',
+    signVirgo: 'Virgo',
+    signLibra: 'Libra',
+    signScorpio: 'Scorpio',
+    signSagittarius: 'Sagittarius',
+    signCapricorn: 'Capricorn',
+    signAquarius: 'Aquarius',
+    signPisces: 'Pisces',
+
+    signThemeAries: 'bold and initiating',
+    signThemeTaurus: 'steady and sensory',
+    signThemeGemini: 'curious and quick',
+    signThemeCancer: 'nurturing and private',
+    signThemeLeo: 'expressive and proud',
+    signThemeVirgo: 'practical and refining',
+    signThemeLibra: 'harmonious and fair-minded',
+    signThemeScorpio: 'deep and intense',
+    signThemeSagittarius: 'adventurous and hopeful',
+    signThemeCapricorn: 'ambitious and structured',
+    signThemeAquarius: 'inventive and collective',
+    signThemePisces: 'dreamy and compassionate',
+
+    rashiMesha: 'Mesha (Aries)',
+    rashiVrishabha: 'Vrishabha (Taurus)',
+    rashiMithuna: 'Mithuna (Gemini)',
+    rashiKarka: 'Karka (Cancer)',
+    rashiSimha: 'Simha (Leo)',
+    rashiKanya: 'Kanya (Virgo)',
+    rashiTula: 'Tula (Libra)',
+    rashiVrishchika: 'Vrishchika (Scorpio)',
+    rashiDhanu: 'Dhanu (Sagittarius)',
+    rashiMakara: 'Makara (Capricorn)',
+    rashiKumbha: 'Kumbha (Aquarius)',
+    rashiMeena: 'Meena (Pisces)',
+
+    nameMoon: 'Moon',
+
     closePanel: 'Close panel',
     orbitalPeriodDays: 'Orbital period in days',
 
@@ -129,8 +199,9 @@ export const translations = {
     footerAriaLabel: 'Site credits and copyright',
     footerText:
       'This is a fun app, made for curious brains who believe in science and unicorns.',
-    footerCopyright: '© {year} {author}. All rights reserved.',
-    footerAuthor: 'Author: {author}',
+    footerCopyrightRights: 'All rights reserved.',
+    footerAuthorLabel: 'Author:',
+    footerAuthorLinkAria: 'Visit Neha’s website (opens in new tab)',
     footerMadeWithAi: 'Made using AI — assisted writing, layout, and code.',
 
     // Position on orbit (placement panel)
@@ -242,6 +313,76 @@ export const translations = {
     snapshotBuddyClose: 'चित्र पर {planet} लगभग पृथ्वी के बगल में है।',
     snapshotBuddyNear: 'अभी {planet} पृथ्वी के काफ़ी पास है।',
     snapshotSpread: 'ग्रह सूर्य के चारों ओर बिखरे हैं — अलग-अलग लेन जैसे।',
+
+    placementAstroTitle: 'ज्योतिष शैली में पढ़ना',
+    placementAstroDisclaimer:
+      'सरलीकृत गणना से अनुमानित ट्रॉपिकल और वैदिक राशियाँ — जिज्ञासा और मनोरंजन के लिए। जन्म कुंडली नहीं; चिकित्सा या वित्तीय सलाह नहीं। व्यक्तिगत कुंडली के लिए सटीक पंचांग या विशेषज्ञ देखें।',
+    placementAstroMoodLabel: 'आकाश का मूड',
+    placementAstroWesternLabel: 'पश्चिमी (ट्रॉपिकल)',
+    placementAstroVedicLabel: 'वैदिक (साइडेरियल, ~लाहिरी)',
+    placementAstroTapHint: 'पूर्ण अंग्रेजी और हिंदू प्रतीकवाद के लिए चित्र पर ग्रह टैप करें।',
+    placementOrbitSection: 'कक्षा चित्र (विज्ञान दृश्य)',
+
+    astroMoodSunMoon:
+      'सूर्य {sunSign} में, चंद्र {moonSign} में — इस तारीख का बाहरी स्वर बनाम भावनात्मक धारा (सामान्य, व्यक्तिगत नहीं)।',
+    astroMoodSameSign:
+      'सूर्य और चंद्र दोनों {sign} में — इस मॉडल में एक ही रंग का मूड (सामान्य, व्यक्तिगत नहीं)।',
+    astroWesternLine:
+      '{planet} {sign} में: {focus}, {theme} रंग में। सामूहिक स्वाद, निजी भविष्यवाणी नहीं।',
+    astroVedicLine:
+      '{planet} {rashi} में: {focus} — ज्योतिष में सामान्य ग्रह ऊर्जा, व्यक्तिगत फल नहीं।',
+
+    astroFocusSun: 'जीवन शक्ति, पहचान और दृश्यता',
+    astroFocusMoon: 'भाव, आदतें और सुरक्षा की भावना',
+    astroFocusMercury: 'बातचीत, सीख और रोज़ के फैसले',
+    astroFocusVenus: 'प्रेम, सौंदर्य और मूल्य',
+    astroFocusMars: 'ऊर्जा, साहस और दृढ़ता',
+    astroFocusJupiter: 'वृद्धि, सौभाग्य और विश्वास',
+    astroFocusSaturn: 'अनुशासन, सीमा और लंबे पाठ',
+    astroFocusUranus: 'अचानक बदलाव, स्वतंत्रता',
+    astroFocusNeptune: 'सपने, अंतर्ज्ञान और धुंध',
+
+    signAries: 'मेष',
+    signTaurus: 'वृषभ',
+    signGemini: 'मिथुन',
+    signCancer: 'कर्क',
+    signLeo: 'सिंह',
+    signVirgo: 'कन्या',
+    signLibra: 'तुला',
+    signScorpio: 'वृश्चिक',
+    signSagittarius: 'धनु',
+    signCapricorn: 'मकर',
+    signAquarius: 'कुंभ',
+    signPisces: 'मीन',
+
+    signThemeAries: 'साहसी और शुरुआती',
+    signThemeTaurus: 'स्थिर और भौतिक',
+    signThemeGemini: 'जिज्ञासु और तेज़',
+    signThemeCancer: 'पोषण और गोपनीय',
+    signThemeLeo: 'अभिव्यंजक और गर्वित',
+    signThemeVirgo: 'व्यावहारिक और सुधारक',
+    signThemeLibra: 'सामंजस्यपूर्ण और न्यायप्रिय',
+    signThemeScorpio: 'गहरा और तीव्र',
+    signThemeSagittarius: 'साहसिक और आशावादी',
+    signThemeCapricorn: 'महत्वाकांक्षी और संरचित',
+    signThemeAquarius: 'नवीन और सामूहिक',
+    signThemePisces: 'स्वप्निल और करुणामय',
+
+    rashiMesha: 'मेष',
+    rashiVrishabha: 'वृषभ',
+    rashiMithuna: 'मिथुन',
+    rashiKarka: 'कर्क',
+    rashiSimha: 'सिंह',
+    rashiKanya: 'कन्या',
+    rashiTula: 'तुला',
+    rashiVrishchika: 'वृश्चिक',
+    rashiDhanu: 'धनु',
+    rashiMakara: 'मकर',
+    rashiKumbha: 'कुंभ',
+    rashiMeena: 'मीन',
+
+    nameMoon: 'चंद्र',
+
     closePanel: 'पैनल बंद करें',
     orbitalPeriodDays: 'कक्षीय अवधि (दिनों में)',
 
@@ -302,8 +443,9 @@ export const translations = {
     footerAriaLabel: 'कॉपीराइट और श्रेय',
     footerText:
       'यह एक मज़ेदार ऐप है, उन जिज्ञासु दिमागों के लिए जो विज्ञान और यूनिकॉर्न में विश्वास करते हैं।',
-    footerCopyright: '© {year} {author}. सर्वाधिकार सुरक्षित।',
-    footerAuthor: 'लेखक: {author}',
+    footerCopyrightRights: 'सर्वाधिकार सुरक्षित।',
+    footerAuthorLabel: 'लेखक:',
+    footerAuthorLinkAria: 'नेहा की वेबसाइट (नई टैब में खुलती है)',
     footerMadeWithAi: 'AI की सहायता से बनाया गया — लेखन, लेआउट और कोड में।',
 
     posTop: 'शीर्ष (0°)',
@@ -369,6 +511,7 @@ export function getPositionLabelI18n(angleDeg, t) {
 
 const NAME_TO_KEY = {
   Sun: 'nameSun',
+  Moon: 'nameMoon',
   Mercury: 'nameMercury',
   Venus: 'nameVenus',
   Earth: 'nameEarth',
